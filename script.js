@@ -4,9 +4,11 @@ let templates = Array.from(document.querySelector(".templates").children)
 shuffle(templates)
 
 templates.forEach(element =>{
+    element.classList.add("tile")
     grid.appendChild(element)
 })
 
+let tiles = Array.from(grid.querySelectorAll(".tile"))
 let videos = Array.from(grid.querySelectorAll("video"))
 
 videos.forEach(video =>{
@@ -17,6 +19,39 @@ videos.forEach(video =>{
         }, 500)
     }
 })
+
+tiles.forEach((tile, i) =>{
+    tile.onmouseover = (e)=>{
+        window.setTimeout(()=>{
+            trigger_stagger_animation_over(i)
+        }, 5)
+
+    }
+    tile.onmouseout = (e)=>{
+        trigger_stagger_animation_out(i)
+    }
+})
+
+const trigger_stagger_animation_over = (index)=>{
+    console.log(index)
+    anime({
+        targets: '.tile',
+        easing: "linear",
+        scale: anime.stagger([1.1, 0.7], {grid: [4, 5], from: index}),
+        delay: anime.stagger(100, {grid: [4, 5], from: index}),
+        duration: 200
+    })
+}
+
+const trigger_stagger_animation_out = (index)=>{
+    anime({
+        targets: '.tile',
+        easing: "linear",
+        scale: 1,
+        delay: anime.stagger(20, {grid: [4, 5], from: index}),
+        duration: 100,
+    })
+}
 
 
 let mouse_down_at = {
@@ -57,7 +92,6 @@ window.onmousedown = e =>{
             y: Math.min(1, Math.max(-65, last_percentage.y + percentage.y))
         }
     
-        console.log(next_percentage)
         grid.animate({
             transform: `translate(${next_percentage.x}%, ${next_percentage.y}%)`
         }, {duration: 1200, fill:"forwards"})
