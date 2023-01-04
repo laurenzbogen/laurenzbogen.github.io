@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap');
+
+
+body{
+    background: #0c0c0c;
+    color: #EF6C00;
+    overflow: hidden;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.title{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    font-size: 10vw;
+    padding-top: 30vh;
+    pointer-events: none;
+}
+
+.image_grid > .image{
+    width: 50vmin;
+    height: 50vmin;
+    object-fit: cover;
+    /* transform: scale(1.2); */
+    overflow: hidden;
+}
+
+.image_grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4vmin;
+    position: absolute;
+
+}
+
+.templates{
+    display: none;
+}
+
+.title_ani{
+    animation: title_animation forwards 3s ease-out
+}
+
+.image_grid_ani{
+    animation: image_grid_animation forwards 5s ease-out
+}
+
+@keyframes title_animation{
+    from{opacity: 1}
+    50%{
+        opacity: 1
+    }
+    to{opacity: 0}
+}
+
+@keyframes image_grid_animation{
+    from{
+        filter: blur(3px) grayscale(1)
+    }
+    to{
+        filter: blur(0px) grayscale(0)
+    }
+}
