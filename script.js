@@ -1,4 +1,5 @@
 addEventListener('wheel', (event) => {
+    event.preventDefault()
     let sensitivity = 0.3
     let delta = {
         x: event.deltaX * sensitivity,
