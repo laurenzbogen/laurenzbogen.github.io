@@ -6,37 +6,48 @@ body{
     color: #EF6C00;
     overflow: hidden;
     font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
 }
 
-.title{
+h1.title, h2.title{
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     z-index: 1;
     text-align: center;
-    font-size: 10vw;
+    font-size: max(10vw, 100px);
     padding-top: 30vh;
     pointer-events: none;
 }
 
+h2.title{
+    color: rgba(255, 255, 255, 0.331);
+    opacity: 0;
+    height: unset;
+    padding-top: 5vh;
+    margin: 0;
+    animation-direction: reverse;
+    animation-delay: 2s;
+    background: rgba(0, 0, 0, 0.166)
+}
+
+
+
 .image_grid > .image{
-    width: 40vmin;
-    height: 40vmin;
+    --size: 30vmin;
+    width: var(--size);
+    height: var(--size);
     object-fit: cover;
     /* transform: scale(1.2); */
     overflow: hidden;
 }
 
 .image_grid{
+    --columns: 4;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5vmin;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: 2vmin;
     position: absolute;
-
-}
-
-.templates{
-    display: none;
 }
 
 .title_ani{
@@ -45,6 +56,18 @@ body{
 
 .image_grid_ani{
     animation: image_grid_animation forwards 5s ease-out
+}
+
+.info{
+    font-size: max(2vw, 20px);
+    pointer-events: none;
+    position: fixed;
+    z-index: 1;
+    font-weight: 900;
+    animation-delay: 500ms;
+    opacity: 0;
+    transition: opacity 500ms;
+    color: #bb8961;
 }
 
 @keyframes title_animation{
