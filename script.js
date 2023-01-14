@@ -91,14 +91,14 @@ let last_percentage = {
     y: 0,
 }
 
-window.onmousedown = e =>{
+window.onpointerdown = e =>{
     e.preventDefault()
     mouse_down_at = {
         x: e.clientX,
         y: e.clientY
     }
 
-    window.onmousemove = e =>{
+    window.onpointermove = e =>{
         let sensitivity = 0.85
         const mouseDelta = {
             x: (mouse_down_at.x - e.clientX) * sensitivity,
@@ -134,7 +134,7 @@ const compute_delta = (delta)=>{
     })
 }
 
-window.onmouseup = e =>{
+window.onpointerup = e =>{
     mouse_down_at = 0;
     last_percentage = next_percentage
 
